@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusConnect — Marketplace</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-marketplace">
+  <div class="marketplace-app">
+    <aside class="marketplace-sidebar" aria-label="App navigation">
+      <a href="index.html" class="marketplace-sidebar__logo">CampusConnect</a>
+
+      <nav class="marketplace-sidebar__nav" aria-label="Sidebar">
+        <a href="login.html" class="marketplace-sidebar__link">
+          <span class="marketplace-sidebar__icon" aria-hidden="true">◉</span>
+          Profile
+        </a>
+        <a href="discover.html" class="marketplace-sidebar__link">
+          <span class="marketplace-sidebar__icon" aria-hidden="true">◎</span>
+          Discover
+        </a>
+        <a href="marketplace.html" class="marketplace-sidebar__link is-active" aria-current="page">
+          <span class="marketplace-sidebar__icon" aria-hidden="true">◇</span>
+          Marketplace
+        </a>
+        <a href="events.html" class="marketplace-sidebar__link">
+          <span class="marketplace-sidebar__icon" aria-hidden="true">▤</span>
+          Events
+        </a>
+        <a href="#settings" class="marketplace-sidebar__link">
+          <span class="marketplace-sidebar__icon" aria-hidden="true">⚙</span>
+          Settings
+        </a>
+      </nav>
+
+      <button type="button" class="btn marketplace-sidebar__cta">List Item</button>
+
+      <p class="marketplace-sidebar__hint"><a href="login.html">Log in</a> to message sellers</p>
+    </aside>
+
+    <div class="marketplace-main">
+      <header class="marketplace-hero">
+        <div class="marketplace-hero__banner">
+          <p class="marketplace-hero__eyebrow">Trending on Campus</p>
+          <h1 class="marketplace-hero__title">Find the best deals from students around you</h1>
+          <p class="marketplace-hero__subtitle">Textbooks, tech, and dorm essentials — listed by people on your campus. Meet up safely and save.</p>
+        </div>
+
+        <div class="app-top-bar">
+          <div class="marketplace-search" role="search">
+            <label class="visually-hidden" for="marketplace-search-input">Search listings</label>
+            <span class="marketplace-search__icon" aria-hidden="true">⌕</span>
+            <input type="search" id="marketplace-search-input" class="marketplace-search__input" placeholder="Search for items, books, tech…" autocomplete="off">
+          </div>
+          <div class="quick-filters" role="group" aria-label="Quick category filters">
+            <button type="button" class="quick-filter is-active">All</button>
+            <button type="button" class="quick-filter">Books</button>
+            <button type="button" class="quick-filter">Tech</button>
+            <button type="button" class="quick-filter">Dorm</button>
+          </div>
+        </div>
+
+        <div class="marketplace-filters" aria-label="Filters">
+          <button type="button" class="filter-pill">
+            All Categories
+            <span class="filter-pill__chevron" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="filter-pill">
+            Condition
+            <span class="filter-pill__chevron" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="filter-pill">
+            Location
+            <span class="filter-pill__chevron" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="filter-pill">
+            Rating
+            <span class="filter-pill__chevron" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="filter-pill filter-pill--muted">
+            Sort
+            <span class="filter-pill__chevron" aria-hidden="true"></span>
+          </button>
+        </div>
+      </header>
+
+      <div class="marketplace-layout">
+        <div class="marketplace-feed">
+          <h2 class="marketplace-section__title" id="listings-heading">Featured listings</h2>
+          <div class="product-grid" aria-labelledby="listings-heading">
+            <article class="product-card">
+              <div class="product-card__media">
+                <img class="product-card__img" src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=600&auto=format&fit=crop&q=80" width="600" height="375" alt="Stack of textbooks">
+                <ul class="product-card__tags">
+                  <li><span class="product-tag product-tag--trending">Trending</span></li>
+                  <li><span class="product-tag product-tag--verified">Verified</span></li>
+                </ul>
+              </div>
+              <div class="product-card__body">
+                <div class="product-card__title-row">
+                  <h3 class="product-card__title">Calculus Early Transcendentals (9th)</h3>
+                  <p class="product-card__price">$42</p>
+                </div>
+                <div class="product-card__seller">
+                  <span class="product-card__seller-name">Maya Chen</span>
+                  <span class="product-card__seller-meta">Junior · Computer Science</span>
+                </div>
+                <div class="product-card__meta-row">
+                  <span class="product-card__rating" title="4.9 out of 5">4.9</span>
+                  <span class="product-card__location">North Campus · Library steps</span>
+                </div>
+                <div class="product-card__actions">
+                  <button type="button" class="btn">Chat</button>
+                  <button type="button" class="btn btn--secondary">View Details</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-card__media">
+                <img class="product-card__img" src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&auto=format&fit=crop&q=80" width="600" height="375" alt="Laptop on a desk">
+                <ul class="product-card__tags">
+                  <li><span class="product-tag product-tag--top">Top Rated</span></li>
+                </ul>
+              </div>
+              <div class="product-card__body">
+                <div class="product-card__title-row">
+                  <h3 class="product-card__title">MacBook Air M1 · 256GB</h3>
+                  <p class="product-card__price">$620</p>
+                </div>
+                <div class="product-card__seller">
+                  <span class="product-card__seller-name">Jordan Williams</span>
+                  <span class="product-card__seller-meta">Senior · Electrical Engineering</span>
+                </div>
+                <div class="product-card__meta-row">
+                  <span class="product-card__rating" title="5 out of 5">5.0</span>
+                  <span class="product-card__location">Engineering Quad pickup</span>
+                </div>
+                <div class="product-card__actions">
+                  <button type="button" class="btn">Chat</button>
+                  <button type="button" class="btn btn--secondary">View Details</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-card__media">
+                <img class="product-card__img" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&auto=format&fit=crop&q=80" width="600" height="375" alt="Headphones">
+                <ul class="product-card__tags">
+                  <li><span class="product-tag product-tag--verified">Verified</span></li>
+                  <li><span class="product-tag product-tag--trending">Trending</span></li>
+                </ul>
+              </div>
+              <div class="product-card__body">
+                <div class="product-card__title-row">
+                  <h3 class="product-card__title">Sony WH-1000XM4</h3>
+                  <p class="product-card__price">$185</p>
+                </div>
+                <div class="product-card__seller">
+                  <span class="product-card__seller-name">Samira Okonkwo</span>
+                  <span class="product-card__seller-meta">Sophomore · Design &amp; HCI</span>
+                </div>
+                <div class="product-card__meta-row">
+                  <span class="product-card__rating" title="4.8 out of 5">4.8</span>
+                  <span class="product-card__location">Arts building lobby</span>
+                </div>
+                <div class="product-card__actions">
+                  <button type="button" class="btn">Chat</button>
+                  <button type="button" class="btn btn--secondary">View Details</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-card__media">
+                <img class="product-card__img" src="https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=600&auto=format&fit=crop&q=80" width="600" height="375" alt="Desk lamp">
+                <ul class="product-card__tags">
+                  <li><span class="product-tag product-tag--top">Top Rated</span></li>
+                  <li><span class="product-tag product-tag--verified">Verified</span></li>
+                </ul>
+              </div>
+              <div class="product-card__body">
+                <div class="product-card__title-row">
+                  <h3 class="product-card__title">LED Desk Lamp (dimmable)</h3>
+                  <p class="product-card__price">$18</p>
+                </div>
+                <div class="product-card__seller">
+                  <span class="product-card__seller-name">Alex Rivera</span>
+                  <span class="product-card__seller-meta">Graduate · Business Analytics</span>
+                </div>
+                <div class="product-card__meta-row">
+                  <span class="product-card__rating" title="4.7 out of 5">4.7</span>
+                  <span class="product-card__location">Grad housing · Lot B</span>
+                </div>
+                <div class="product-card__actions">
+                  <button type="button" class="btn">Chat</button>
+                  <button type="button" class="btn btn--secondary">View Details</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-card__media">
+                <img class="product-card__img" src="https://images.unsplash.com/photo-1587145820266-a5951ee6c620?w=600&auto=format&fit=crop&q=80" width="600" height="375" alt="Graphing calculator">
+                <ul class="product-card__tags">
+                  <li><span class="product-tag product-tag--trending">Trending</span></li>
+                </ul>
+              </div>
+              <div class="product-card__body">
+                <div class="product-card__title-row">
+                  <h3 class="product-card__title">TI-84 Plus CE</h3>
+                  <p class="product-card__price">$72</p>
+                </div>
+                <div class="product-card__seller">
+                  <span class="product-card__seller-name">Riley Park</span>
+                  <span class="product-card__seller-meta">Freshman · Mathematics</span>
+                </div>
+                <div class="product-card__meta-row">
+                  <span class="product-card__rating" title="4.6 out of 5">4.6</span>
+                  <span class="product-card__location">STEM study center</span>
+                </div>
+                <div class="product-card__actions">
+                  <button type="button" class="btn">Chat</button>
+                  <button type="button" class="btn btn--secondary">View Details</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-card__media">
+                <img class="product-card__img" src="https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?w=600&auto=format&fit=crop&q=80" width="600" height="375" alt="Bicycle">
+                <ul class="product-card__tags">
+                  <li><span class="product-tag product-tag--verified">Verified</span></li>
+                </ul>
+              </div>
+              <div class="product-card__body">
+                <div class="product-card__title-row">
+                  <h3 class="product-card__title">Campus Bike · 21 speed</h3>
+                  <p class="product-card__price">$140</p>
+                </div>
+                <div class="product-card__seller">
+                  <span class="product-card__seller-name">Taylor Brooks</span>
+                  <span class="product-card__seller-meta">Junior · Environmental Science</span>
+                </div>
+                <div class="product-card__meta-row">
+                  <span class="product-card__rating" title="4.9 out of 5">4.9</span>
+                  <span class="product-card__location">South bike racks</span>
+                </div>
+                <div class="product-card__actions">
+                  <button type="button" class="btn">Chat</button>
+                  <button type="button" class="btn btn--secondary">View Details</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <aside class="marketplace-aside" aria-label="Marketplace insights">
+          <section class="trust-card">
+            <div class="trust-card__icon" aria-hidden="true">🛡</div>
+            <h2 class="trust-card__title">Campus Trust</h2>
+            <p class="trust-card__text">Every seller is a verified student. Report issues in one tap and meet in public spots suggested by the union.</p>
+          </section>
+
+          <section class="sellers-card" aria-labelledby="top-sellers-heading">
+            <h2 id="top-sellers-heading" class="sellers-card__title">Top Sellers this week</h2>
+            <ul class="sellers-card__list">
+              <li class="sellers-card__item">
+                <img class="sellers-card__avatar" src="https://i.pravatar.cc/80?img=32" width="80" height="80" alt="Maya Chen">
+                <div class="sellers-card__info">
+                  <span class="sellers-card__name">Maya Chen</span>
+                  <span class="sellers-card__stat">12 sales · 4.9 rating</span>
+                </div>
+              </li>
+              <li class="sellers-card__item">
+                <img class="sellers-card__avatar" src="https://i.pravatar.cc/80?img=12" width="80" height="80" alt="Jordan Williams">
+                <div class="sellers-card__info">
+                  <span class="sellers-card__name">Jordan Williams</span>
+                  <span class="sellers-card__stat">9 sales · 5.0 rating</span>
+                </div>
+              </li>
+              <li class="sellers-card__item">
+                <img class="sellers-card__avatar" src="https://i.pravatar.cc/80?img=45" width="80" height="80" alt="Samira Okonkwo">
+                <div class="sellers-card__info">
+                  <span class="sellers-card__name">Samira Okonkwo</span>
+                  <span class="sellers-card__stat">7 sales · 4.8 rating</span>
+                </div>
+              </li>
+            </ul>
+          </section>
+
+          <article class="trusted-student-card" aria-label="Most Trusted Student">
+            <img class="trusted-student-card__avatar" src="https://i.pravatar.cc/160?img=68" width="160" height="160" alt="Portrait of Alex Rivera">
+            <span class="trusted-student-card__badge">Most Trusted Student</span>
+            <p class="trusted-student-card__name">Alex Rivera</p>
+            <p class="trusted-student-card__meta">Graduate · Business Analytics</p>
+            <p class="trusted-student-card__bio">47 completed deals, zero disputes. Known for fair pricing and quick handoffs.</p>
+          </article>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>CampusConnect — marketplace</p>
+  </footer>
+</body>
+</html>

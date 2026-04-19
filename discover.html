@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusConnect — Discover</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-discover">
+  <div class="discover-app">
+    <aside class="discover-sidebar" aria-label="App navigation">
+      <a href="index.html" class="discover-sidebar__logo">CampusConnect</a>
+
+      <nav class="discover-sidebar__nav" aria-label="Sidebar">
+        <a href="login.html" class="discover-sidebar__link">
+          <span class="discover-sidebar__icon" aria-hidden="true">◉</span>
+          Profile
+        </a>
+        <a href="discover.html" class="discover-sidebar__link is-active" aria-current="page">
+          <span class="discover-sidebar__icon" aria-hidden="true">◎</span>
+          Discover
+        </a>
+        <a href="marketplace.html" class="discover-sidebar__link">
+          <span class="discover-sidebar__icon" aria-hidden="true">◇</span>
+          Marketplace
+        </a>
+        <a href="events.html" class="discover-sidebar__link">
+          <span class="discover-sidebar__icon" aria-hidden="true">▤</span>
+          Events
+        </a>
+        <a href="#settings" class="discover-sidebar__link">
+          <span class="discover-sidebar__icon" aria-hidden="true">⚙</span>
+          Settings
+        </a>
+      </nav>
+
+      <button type="button" class="btn discover-sidebar__cta">Create Post</button>
+
+      <p class="discover-sidebar__hint"><a href="login.html">Log in</a> for full access</p>
+    </aside>
+
+    <div class="discover-main">
+      <header class="discover-hero">
+        <p class="discover-hero__eyebrow">Spring 2026</p>
+        <h1 class="discover-hero__title">Find your perfect collaborator</h1>
+        <p class="discover-hero__subtitle">Connect with students across campus based on skills, interests, and goals.</p>
+
+        <div class="app-top-bar">
+          <div class="discover-search" role="search">
+            <label class="visually-hidden" for="discover-search-input">Search students</label>
+            <span class="discover-search__icon" aria-hidden="true">⌕</span>
+            <input type="search" id="discover-search-input" class="discover-search__input" placeholder="Search for projects or people…" autocomplete="off">
+          </div>
+          <div class="quick-filters" role="group" aria-label="Quick role filters">
+            <button type="button" class="quick-filter is-active">All</button>
+            <button type="button" class="quick-filter">Engineers</button>
+            <button type="button" class="quick-filter">Designers</button>
+            <button type="button" class="quick-filter">Business</button>
+          </div>
+        </div>
+
+        <div class="discover-filters" aria-label="Filters">
+          <button type="button" class="filter-pill">
+            Academic Year
+            <span class="filter-pill__chevron" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="filter-pill">
+            Major / Branch
+            <span class="filter-pill__chevron" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="filter-pill">
+            Interests
+            <span class="filter-pill__chevron" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="filter-pill filter-pill--muted">
+            More Filters
+            <span class="filter-pill__chevron" aria-hidden="true"></span>
+          </button>
+        </div>
+      </header>
+
+      <section class="discover-section" aria-labelledby="students-heading">
+        <h2 id="students-heading" class="discover-section__title">Recommended collaborators</h2>
+        <div class="student-grid">
+          <article class="student-card">
+            <div class="student-card__header">
+              <img class="student-card__avatar" src="https://i.pravatar.cc/200?img=32" width="200" height="200" alt="Portrait of Maya Chen">
+              <div class="student-card__badge student-card__badge--accent">Top Contributor</div>
+            </div>
+            <h3 class="student-card__name">Maya Chen</h3>
+            <p class="student-card__meta">Junior · Computer Science</p>
+            <ul class="tag-list" aria-label="Skills and interests">
+              <li>Machine Learning</li>
+              <li>Python</li>
+              <li>Hackathons</li>
+              <li>Open Source</li>
+            </ul>
+            <button type="button" class="btn btn--block btn--sm">Connect</button>
+          </article>
+
+          <article class="student-card">
+            <div class="student-card__header">
+              <img class="student-card__avatar" src="https://i.pravatar.cc/200?img=12" width="200" height="200" alt="Portrait of Jordan Williams">
+              <div class="student-card__badge student-card__badge--violet">AI Enthusiast</div>
+            </div>
+            <h3 class="student-card__name">Jordan Williams</h3>
+            <p class="student-card__meta">Senior · Electrical Engineering</p>
+            <ul class="tag-list" aria-label="Skills and interests">
+              <li>Computer Vision</li>
+              <li>Robotics</li>
+              <li>C++</li>
+            </ul>
+            <button type="button" class="btn btn--block btn--sm">Connect</button>
+          </article>
+
+          <article class="student-card">
+            <div class="student-card__header">
+              <img class="student-card__avatar" src="https://i.pravatar.cc/200?img=45" width="200" height="200" alt="Portrait of Samira Okonkwo">
+              <div class="student-card__badge student-card__badge--teal">Design Lead</div>
+            </div>
+            <h3 class="student-card__name">Samira Okonkwo</h3>
+            <p class="student-card__meta">Sophomore · Design &amp; HCI</p>
+            <ul class="tag-list" aria-label="Skills and interests">
+              <li>UI/UX</li>
+              <li>Figma</li>
+              <li>Design Systems</li>
+              <li>Research</li>
+            </ul>
+            <button type="button" class="btn btn--block btn--sm">Connect</button>
+          </article>
+
+          <article class="student-card">
+            <div class="student-card__header">
+              <img class="student-card__avatar" src="https://i.pravatar.cc/200?img=68" width="200" height="200" alt="Portrait of Alex Rivera">
+              <div class="student-card__badge student-card__badge--amber">Top Contributor</div>
+            </div>
+            <h3 class="student-card__name">Alex Rivera</h3>
+            <p class="student-card__meta">Graduate · Business Analytics</p>
+            <ul class="tag-list" aria-label="Skills and interests">
+              <li>SQL</li>
+              <li>Data Viz</li>
+              <li>Startup</li>
+            </ul>
+            <button type="button" class="btn btn--block btn--sm">Connect</button>
+          </article>
+        </div>
+      </section>
+
+      <div class="discover-bottom">
+        <article class="callout-card">
+          <div class="callout-card__inner">
+            <h2 class="callout-card__title">Start a Collaborative Study Group</h2>
+            <p class="callout-card__text">Break through academic challenges together. Build a private network with fellow students to share notes and research.</p>
+            <button type="button" class="btn callout-card__btn">Create Group</button>
+          </div>
+        </article>
+
+        <aside class="trending-card" aria-labelledby="trending-heading">
+          <h2 id="trending-heading" class="trending-card__title">Trending Skills</h2>
+          <ul class="trending-card__tags">
+            <li><a href="#">React Native</a></li>
+            <li><a href="#">Fintech</a></li>
+            <li><a href="#">Ethics in AI</a></li>
+            <li><a href="#">3D Printing</a></li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>CampusConnect — discover</p>
+  </footer>
+</body>
+</html>

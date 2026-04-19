@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusConnect — 48-Hour Build Sprint</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-events">
+  <div class="events-app">
+    <aside class="events-sidebar" aria-label="App navigation">
+      <a href="index.html" class="events-sidebar__logo">CampusConnect</a>
+
+      <nav class="events-sidebar__nav" aria-label="Sidebar">
+        <a href="login.html" class="events-sidebar__link">
+          <span class="events-sidebar__icon" aria-hidden="true">◉</span>
+          Profile
+        </a>
+        <a href="discover.html" class="events-sidebar__link">
+          <span class="events-sidebar__icon" aria-hidden="true">◎</span>
+          Discover
+        </a>
+        <a href="marketplace.html" class="events-sidebar__link">
+          <span class="events-sidebar__icon" aria-hidden="true">◇</span>
+          Marketplace
+        </a>
+        <a href="events.html" class="events-sidebar__link is-active" aria-current="page">
+          <span class="events-sidebar__icon" aria-hidden="true">▤</span>
+          Events
+        </a>
+        <a href="#settings" class="events-sidebar__link">
+          <span class="events-sidebar__icon" aria-hidden="true">⚙</span>
+          Settings
+        </a>
+      </nav>
+
+      <button type="button" class="btn events-sidebar__cta">Create Event</button>
+
+      <p class="events-sidebar__hint"><a href="login.html">Log in</a> to RSVP &amp; save events</p>
+    </aside>
+
+    <div class="events-main">
+      <article class="event-details">
+        <a href="events.html" class="event-details__back">← Back to events</a>
+
+        <header class="event-details-hero">
+          <img class="event-details-hero__img" src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1400&auto=format&fit=crop&q=80" width="1400" height="780" alt="Students collaborating at a hackathon">
+          <div class="event-details-hero__overlay" aria-hidden="true"></div>
+          <div class="event-details-hero__content">
+            <span class="event-card__cat event-card__cat--tech">Tech</span>
+            <h1 class="event-details-hero__title">48-Hour Build Sprint</h1>
+            <p class="event-details-hero__datetime">Fri, Apr 10 · 6:00 PM – Sun, Apr 12 · 6:00 PM</p>
+            <p class="event-details-hero__location">CS Lab 3 · North Campus · Engineering</p>
+            <p class="event-details-hero__stats">120 going · 45 interested</p>
+          </div>
+        </header>
+
+        <div class="event-details-layout">
+          <div class="event-details-maincol">
+            <section class="event-details-panel" aria-labelledby="about-heading">
+              <h2 id="about-heading" class="event-details-panel__title">About this event</h2>
+              <div class="event-details-panel__prose">
+                <p>Join students from every major for a full weekend of building, learning, and shipping real projects. You will form small teams, pick a challenge theme (AI for good, campus life, or open innovation), and present a working demo to a panel of faculty and industry mentors.</p>
+                <p>No experience required — we run onboarding blocks for Git, Figma, and APIs on Friday night. Meals, caffeine, and overnight lab access are included so you can focus on your build. Come for the skills, stay for the community.</p>
+              </div>
+            </section>
+
+            <section class="event-details-panel" aria-labelledby="highlights-heading">
+              <h2 id="highlights-heading" class="event-details-panel__title">Event highlights</h2>
+              <ul class="event-details-highlights">
+                <li>Guest speakers from two alumni-led startups (Sat morning)</li>
+                <li>Free food, snacks, and midnight pizza runs</li>
+                <li>Networking lounge with recruiters and club leads</li>
+                <li>Certificates for all finishers · cash prizes for top three teams</li>
+              </ul>
+            </section>
+
+            <section class="event-details-panel" aria-labelledby="venue-heading">
+              <h2 id="venue-heading" class="event-details-panel__title">Location &amp; venue</h2>
+              <p class="event-details-venue__name"><strong>Computer Science Lab 3</strong></p>
+              <p class="event-details-venue__area">North Campus · Engineering quad · Building C, 2nd floor</p>
+              <p class="event-details-venue__note">Enter through the main atrium; staff will check student IDs at the door.</p>
+              <div class="event-details-map" role="img" aria-label="Map preview placeholder">
+                <span class="event-details-map__label">Map preview</span>
+                <span class="event-details-map__hint">Interactive map would load here</span>
+              </div>
+            </section>
+          </div>
+
+          <aside class="event-details-rail" aria-label="RSVP and event details">
+            <div class="event-details-rail__sticky">
+              <div class="event-action-card">
+                <button type="button" class="btn btn--block event-action-card__primary">RSVP / Join Event</button>
+                <button type="button" class="btn btn--secondary btn--block event-action-card__secondary">Save Event</button>
+              </div>
+
+              <section class="organizer-card" aria-labelledby="organizer-d-heading">
+                <h2 id="organizer-d-heading" class="organizer-card__title">Organizer</h2>
+                <div class="organizer-card__profile">
+                  <img class="organizer-card__avatar" src="https://i.pravatar.cc/120?img=47" width="120" height="120" alt="Portrait of Jamie Liu">
+                  <p class="organizer-card__name">Jamie Liu</p>
+                  <p class="organizer-card__club">Student Activities Board</p>
+                  <button type="button" class="btn btn--sm btn--block organizer-card__btn">Chat with Organizer</button>
+                </div>
+              </section>
+
+              <section class="event-info-card" aria-labelledby="info-card-heading">
+                <h2 id="info-card-heading" class="event-info-card__title">Event info</h2>
+                <ul class="event-info-card__list">
+                  <li>
+                    <span class="event-info-card__label">Date</span>
+                    <span class="event-info-card__value">Apr 10 – 12, 2026</span>
+                  </li>
+                  <li>
+                    <span class="event-info-card__label">Time</span>
+                    <span class="event-info-card__value">Fri 6:00 PM → Sun 6:00 PM</span>
+                  </li>
+                  <li>
+                    <span class="event-info-card__label">Location</span>
+                    <span class="event-info-card__value">CS Lab 3</span>
+                  </li>
+                  <li>
+                    <span class="event-info-card__label">Category</span>
+                    <span class="event-info-card__value">Tech · Hackathon</span>
+                  </li>
+                </ul>
+              </section>
+            </div>
+          </aside>
+        </div>
+
+        <section class="event-details-similar" aria-labelledby="similar-heading">
+          <h2 id="similar-heading" class="event-details-similar__title">Similar events you may like</h2>
+          <div class="similar-events-grid">
+            <article class="similar-event-card">
+              <a href="event-details.html" class="similar-event-card__media">
+                <img class="similar-event-card__img" src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=480&h=300&auto=format&fit=crop&q=80" width="480" height="300" alt="Workshop room" loading="lazy" decoding="async">
+              </a>
+              <div class="similar-event-card__body">
+                <span class="event-card__cat event-card__cat--tech">Tech</span>
+                <h3 class="similar-event-card__title"><a href="event-details.html">Resume Lab: PM &amp; Design</a></h3>
+                <p class="similar-event-card__meta">Mon, Apr 14 · 5:00 PM</p>
+                <p class="similar-event-card__loc">Career Center</p>
+              </div>
+            </article>
+
+            <article class="similar-event-card">
+              <a href="event-details.html" class="similar-event-card__media">
+                <img class="similar-event-card__img" src="assets/similar-event-summit.svg" width="480" height="300" alt="Conference and summit illustration" loading="lazy" decoding="async">
+              </a>
+              <div class="similar-event-card__body">
+                <span class="event-card__cat event-card__cat--tech">Tech</span>
+                <h3 class="similar-event-card__title"><a href="event-details.html">Campus Innovation Summit</a></h3>
+                <p class="similar-event-card__meta">Sat, Apr 18 · 10:00 AM</p>
+                <p class="similar-event-card__loc">Student Union</p>
+              </div>
+            </article>
+
+            <article class="similar-event-card">
+              <a href="event-details.html" class="similar-event-card__media">
+                <img class="similar-event-card__img" src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=480&h=300&auto=format&fit=crop&q=80" width="480" height="300" alt="Crowd at an evening music event" loading="lazy" decoding="async">
+              </a>
+              <div class="similar-event-card__body">
+                <span class="event-card__cat event-card__cat--cultural">Cultural</span>
+                <h3 class="similar-event-card__title"><a href="event-details.html">World Music Night</a></h3>
+                <p class="similar-event-card__meta">Sat, Apr 11 · 7:30 PM</p>
+                <p class="similar-event-card__loc">Theater Auditorium</p>
+              </div>
+            </article>
+          </div>
+        </section>
+      </article>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>CampusConnect — event details</p>
+  </footer>
+</body>
+</html>
