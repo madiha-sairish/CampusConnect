@@ -1,150 +1,155 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login - CampusConnect</title>
   <style>
     body {
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       background: #f5f6fa;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      margin: 0;
     }
     .card {
       background: white;
-      padding: 25px;
-      border-radius: 10px;
-      width: 300px;
+      padding: 30px;
+      border-radius: 12px;
+      width: 320px;
       text-align: center;
     }
     input {
-      width: 90%;
-      padding: 10px;
-      margin: 8px 0;
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      box-sizing: border-box;
     }
     button {
-      padding: 10px 15px;
+      padding: 10px 18px;
       background: #5b4df0;
       color: white;
       border: none;
       cursor: pointer;
-      margin-top: 10px;
     }
     #reportBox {
       display: none;
-      margin-top: 10px;
+      margin-top: 14px;
+    }
+    #reportBtn {
+      background: none;
+      color: #5b4df0;
+      border: none;
+      cursor: pointer;
+      margin-top: 14px;
     }
   </style>
 </head>
-
 <body>
+  <div class="card">
+    <h2>Login</h2>
 
-<div class="card">
-  <h2>Login</h2>
+    <input type="email" id="email" placeholder="Enter email" />
+    <input type="password" id="password" placeholder="Enter password" />
 
-  <input type="email" id="email" placeholder="Enter email">
-  <input type="password" id="password" placeholder="Enter password">
+    <button id="loginBtn">Sign In</button>
 
-<button id="loginBtn">Sign In</button>
+    <div>
+      <button id="reportBtn">Having trouble? Report issue</button>
+    </div>
 
-  <!-- REPORT BUTTON -->
-
-  <p>
-    <button id="reportBtn" style="background:none; color:#5b4df0;">
-      Having trouble? Report issue
-    </button>
-  </p>
-
-  <!-- REPORT BOX -->
-
-  <div id="reportBox" style="display:none;">
-    <input type="email" id="reportEmail" placeholder="Your email">
-    <input type="text" id="reportReason" placeholder="Your issue">
-    <button id="submitReportBtn">Submit Request</button>
+    <div id="reportBox">
+      <input type="email" id="reportEmail" placeholder="Your email" />
+      <input type="text" id="reportReason" placeholder="Your issue" />
+      <button id="submitReportBtn">Submit Request</button>
+    </div>
   </div>
 
-</div>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-<script type="module">
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbMYt1jx1ZT8d6L9dg5Sz1ArvPC8_LVao",
+      authDomain: "campusconnect-4f809.firebaseapp.com",
+      projectId: "campusconnect-4f809",
+      storageBucket: "campusconnect-4f809.appspot.com",
+      messagingSenderId: "1070564995984",
+      appId: "1:1070564995984:web:b330ec15b5d76c09b97915"
+    };
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-const firebaseConfig = {
-  apiKey: "AIzaSyBbMYt1jx1ZT8d6L9dg5Sz1ArvPC8_LVao",
-  authDomain: "campusconnect-4f809.firebaseapp.com",
-  projectId: "campusconnect-4f809",
-  storageBucket: "campusconnect-4f809.firebasestorage.app",
-  messagingSenderId: "1070564995984",
-  appId: "1:1070564995984:web:b330ec15b5d76c09b97915"
-};
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
-
-// LOGIN
-document.getElementById("loginBtn").addEventListener("click", () => {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  if (!email.endsWith("@dubai.bits-pilani.ac.in")) {
-    alert("Only university email is allowed.");
-    return;
-  }
-
-  signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      alert("Login success ✅");
-      window.location.href = "index.html";
-    })
-    .catch((error) => {
-      alert(error.message);
-    });
-});
-
-// REPORT BUTTON
-document.getElementById("reportBtn").addEventListener("click", () => {
-  const box = document.getElementById("reportBox");
-
-  if (box.style.display === "block") {
-    box.style.display = "none";
-  } else {
-    box.style.display = "block";
-  }
-
-  // auto fill email
-  document.getElementById("reportEmail").value =
-    document.getElementById("email").value;
-});
-// SUBMIT REPORT
-document.getElementById("submitReportBtn").addEventListener("click", async () => {
-  const email = document.getElementById("reportEmail").value;
-  const reason = document.getElementById("reportReason").value;
-
-  if (!email || !reason) {
-    alert("Fill all fields");
-    return;
-  }
-
-  try {
-    await addDoc(collection(db, "reports"), {
-      email: email,
-      issue: reason,
-      time: new Date()
+    // already logged in -> go home
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        window.location.href = "index.html";
+      }
     });
 
-    alert("Request stored in database ✅");
+    // login
+    document.getElementById("loginBtn").addEventListener("click", () => {
+      const email = document.getElementById("email").value.trim().toLowerCase();
+      const password = document.getElementById("password").value.trim();
 
-  } catch (error) {
-    alert("Error: " + error.message);
-  }
-});
+      if (!email.endsWith("@dubai.bits-pilani.ac.in")) {
+        alert("Only university email is allowed.");
+        return;
+      }
 
-</script>
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          alert("Login success ✅");
+          window.location.href = "index.html";
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    });
 
+    // toggle report box
+    document.getElementById("reportBtn").addEventListener("click", () => {
+      const box = document.getElementById("reportBox");
+      box.style.display = box.style.display === "block" ? "none" : "block";
+      document.getElementById("reportEmail").value =
+        document.getElementById("email").value;
+    });
+
+    // store report
+    document.getElementById("submitReportBtn").addEventListener("click", async () => {
+      const email = document.getElementById("reportEmail").value.trim();
+      const reason = document.getElementById("reportReason").value.trim();
+
+      if (!email || !reason) {
+        alert("Fill all fields");
+        return;
+      }
+
+      try {
+        await addDoc(collection(db, "reports"), {
+          email,
+          issue: reason,
+          time: new Date()
+        });
+        alert("Request stored in database ✅");
+        document.getElementById("reportReason").value = "";
+      } catch (error) {
+        alert("Error: " + error.message);
+      }
+    });
+  </script>
 </body>
 </html>

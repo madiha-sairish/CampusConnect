@@ -1,37 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CampusConnect — Home</title>
-  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #eef1f8;
+      color: #111827;
+    }
+
+    .site-header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .nav {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav__brand {
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav__links a {
+      text-decoration: none;
+      color: #667085;
+      font-size: 15px;
+    }
+
+    .nav__links a[aria-current="page"] {
+      color: #4f46e5;
+      font-weight: 600;
+    }
+
+    .logout-btn,
+    .edit-btn {
+      background: none;
+      border: none;
+      color: #4f46e5;
+      cursor: pointer;
+      font: inherit;
+      padding: 0;
+    }
+
+    .profile-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f8faff;
+      border: 1px solid #e5e7eb;
+      border-radius: 999px;
+      padding: 6px 10px;
+    }
+
+    .profile-chip img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .profile-chip span {
+      font-size: 14px;
+      color: #111827;
+      font-weight: 600;
+      max-width: 120px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      margin: 0 0 8px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .hero p {
+      margin: 0 0 26px;
+      color: #667085;
+      font-size: 16px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #dbe4ff;
+      border-radius: 20px;
+      padding: 22px 22px;
+      margin-bottom: 24px;
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #667085;
+      line-height: 1.6;
+    }
+
+    .profile-summary {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .profile-summary img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #e5e7eb;
+    }
+
+    .profile-summary h2 {
+      margin: 0 0 8px;
+      font-size: 22px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .meta span {
+      background: #f5f7ff;
+      border: 1px solid #dbe4ff;
+      color: #374151;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+    }
+
+    .bio {
+      color: #667085;
+      line-height: 1.6;
+    }
+
+    .site-footer {
+      text-align: center;
+      color: #667085;
+      padding: 26px 12px 40px;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
     <nav class="nav" aria-label="Main">
       <a href="index.html" class="nav__brand">CampusConnect</a>
+
       <ul class="nav__links">
         <li><a href="index.html" aria-current="page">Home</a></li>
         <li><a href="discover.html">Discover</a></li>
         <li><a href="marketplace.html">Marketplace</a></li>
         <li><a href="events.html">Events</a></li>
-        <li><a href="login.html">Log in</a></li>
+
+        <li>
+          <div class="profile-chip" id="profilePreview">
+            <img id="navAvatar" src="assets/avatar1.png" alt="Profile">
+            <span id="navName">Student</span>
+          </div>
+        </li>
+
+        <li><button class="edit-btn" id="editProfileBtn">Edit Profile</button></li>
+        <li><button class="logout-btn" id="logoutBtn">Logout</button></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <h1 class="page-title">Welcome to CampusConnect</h1>
-    <p class="lead">Your campus hub for people, listings, and what’s happening.</p>
+  <main class="main">
+    <section class="hero">
+      <h1>Welcome to CampusConnect</h1>
+      <p>Your campus hub for people, listings, and what's happening.</p>
+    </section>
 
-    <div class="card">
-      <h2>Get started</h2>
+    <section class="card">
+      <h3>Get started</h3>
       <p>Browse <a href="discover.html">Discover</a> to find clubs and peers, check the <a href="marketplace.html">Marketplace</a> for books and gear, and see <a href="events.html">Events</a> on campus.</p>
-    </div>
+    </section>
+
+    <section class="card" id="myProfileCard">
+      <div class="profile-summary">
+        <img id="profileCardAvatar" src="assets/avatar1.png" alt="My profile avatar">
+        <div>
+          <h2 id="profileCardName">Student</h2>
+
+          <div class="meta">
+            <span id="profileYear">Year</span>
+            <span id="profileSemester">Semester</span>
+            <span id="profileDiscipline">Discipline</span>
+            <span id="profileGroup">Group</span>
+          </div>
+
+          <p class="bio" id="profileCardBio">Your profile information will appear here.</p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
-    <p>CampusConnect — starter layout</p>
+    CampusConnect — starter layout
   </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbMYt1jx1ZT8d6L9dg5Sz1ArvPC8_LVao",
+      authDomain: "campusconnect-4f809.firebaseapp.com",
+      projectId: "campusconnect-4f809",
+      storageBucket: "campusconnect-4f809.appspot.com",
+      messagingSenderId: "1070564995984",
+      appId: "1:1070564995984:web:b330ec15b5d76c09b97915"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const navAvatar = document.getElementById("navAvatar");
+    const navName = document.getElementById("navName");
+    const profileCardAvatar = document.getElementById("profileCardAvatar");
+    const profileCardName = document.getElementById("profileCardName");
+    const profileYear = document.getElementById("profileYear");
+    const profileSemester = document.getElementById("profileSemester");
+    const profileDiscipline = document.getElementById("profileDiscipline");
+    const profileGroup = document.getElementById("profileGroup");
+    const profileCardBio = document.getElementById("profileCardBio");
+
+    async function loadProfile(uid) {
+      const profileRef = doc(db, "profiles", uid);
+      const profileSnap = await getDoc(profileRef);
+
+      if (!profileSnap.exists()) {
+        window.location.href = "profile.html";
+        return;
+      }
+
+      const data = profileSnap.data();
+
+      navAvatar.src = data.avatar || "assets/avatar1.png";
+      navName.textContent = data.fullName || "Student";
+
+      profileCardAvatar.src = data.avatar || "assets/avatar1.png";
+      profileCardName.textContent = data.fullName || "Student";
+      profileYear.textContent = data.year || "Year";
+      profileSemester.textContent = data.semester || "Semester";
+      profileDiscipline.textContent = data.discipline || "Discipline";
+      profileGroup.textContent = data.group || "Group";
+      profileCardBio.textContent = data.bio || "No bio added yet.";
+    }
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      try {
+        await loadProfile(user.uid);
+      } catch (error) {
+        console.error(error);
+        alert("Could not load profile.");
+      }
+    });
+
+    document.getElementById("editProfileBtn").addEventListener("click", () => {
+      window.location.href = "profile.html";
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        alert("Logged out ✅");
+        window.location.href = "login.html";
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+  </script>
 </body>
 </html>

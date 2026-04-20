@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complete Profile - CampusConnect</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 24px 0;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      width: 430px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 {
+      margin-top: 0;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .sub {
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    .avatar-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    .avatar-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .avatar-option {
+      border: 2px solid #d9deea;
+      border-radius: 14px;
+      padding: 8px;
+      cursor: pointer;
+      text-align: center;
+      transition: 0.2s;
+      background: #fafbff;
+    }
+
+    .avatar-option:hover {
+      border-color: #5b4df0;
+      transform: translateY(-2px);
+    }
+
+    .avatar-option.selected {
+      border-color: #5b4df0;
+      background: #f0eeff;
+    }
+
+    .avatar-option img {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      border-radius: 50%;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 14px;
+      border: 1px solid #d9deea;
+      border-radius: 10px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: #5b4df0;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #4a3fe0;
+    }
+
+    .note {
+      font-size: 12px;
+      color: #666;
+      margin-top: -4px;
+      margin-bottom: 14px;
+    }
+
+    .status {
+      text-align: center;
+      font-size: 13px;
+      color: #666;
+      margin-top: 10px;
+      min-height: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2 id="profileHeading">Complete Your Profile</h2>
+    <p class="sub">This basic profile will be public inside the campus app.</p>
+
+    <div class="avatar-title">Choose Your Avatar *</div>
+
+    <div class="avatar-grid">
+      <div class="avatar-option" data-avatar="assets/avatar1.png">
+        <img src="assets/avatar1.png" alt="Avatar 1">
+      </div>
+      <div class="avatar-option" data-avatar="assets/avatar2.png">
+        <img src="assets/avatar2.png" alt="Avatar 2">
+      </div>
+      <div class="avatar-option" data-avatar="assets/avatar3.png">
+        <img src="assets/avatar3.png" alt="Avatar 3">
+      </div>
+      <div class="avatar-option" data-avatar="assets/avatar4.png">
+        <img src="assets/avatar4.png" alt="Avatar 4">
+      </div>
+      <div class="avatar-option" data-avatar="assets/avatar5.png">
+        <img src="assets/avatar5.png" alt="Avatar 5">
+      </div>
+      <div class="avatar-option" data-avatar="assets/avatar6.png">
+        <img src="assets/avatar6.png" alt="Avatar 6">
+      </div>
+      <div class="avatar-option" data-avatar="assets/avatar7.png">
+        <img src="assets/avatar7.png" alt="Avatar 7">
+      </div>
+      <div class="avatar-option" data-avatar="assets/avatar8.png">
+        <img src="assets/avatar8.png" alt="Avatar 8">
+      </div>
+    </div>
+
+    <input type="text" id="fullName" placeholder="Full Name" />
+
+    <select id="year">
+      <option value="">Select Year</option>
+      <option>1st Year</option>
+      <option>2nd Year</option>
+      <option>3rd Year</option>
+      <option>4th Year</option>
+    </select>
+
+    <select id="semester">
+      <option value="">Select Semester</option>
+      <option>Semester 1</option>
+      <option>Semester 2</option>
+    </select>
+
+    <input type="text" id="discipline" placeholder="Discipline / Branch" />
+    <input type="text" id="group" placeholder="Group (example: Group 1 / Group 2)" />
+    <textarea id="bio" placeholder="Short Bio"></textarea>
+
+    <div class="note">One university email can maintain only one CampusConnect profile.</div>
+
+    <button id="saveProfileBtn">Save Profile</button>
+    <div class="status" id="statusText"></div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbMYt1jx1ZT8d6L9dg5Sz1ArvPC8_LVao",
+      authDomain: "campusconnect-4f809.firebaseapp.com",
+      projectId: "campusconnect-4f809",
+      storageBucket: "campusconnect-4f809.appspot.com",
+      messagingSenderId: "1070564995984",
+      appId: "1:1070564995984:web:b330ec15b5d76c09b97915"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    let currentUser = null;
+    let selectedAvatar = "";
+    const avatarOptions = document.querySelectorAll(".avatar-option");
+    const statusText = document.getElementById("statusText");
+
+    function markSelectedAvatar(path) {
+      avatarOptions.forEach((option) => {
+        option.classList.toggle("selected", option.dataset.avatar === path);
+      });
+      selectedAvatar = path;
+    }
+
+    avatarOptions.forEach((option) => {
+      option.addEventListener("click", () => {
+        markSelectedAvatar(option.dataset.avatar);
+      });
+    });
+
+    async function loadExistingProfile(uid) {
+      const profileRef = doc(db, "profiles", uid);
+      const profileSnap = await getDoc(profileRef);
+
+      if (!profileSnap.exists()) return;
+
+      const data = profileSnap.data();
+
+      document.getElementById("profileHeading").textContent = "Edit Your Profile";
+      document.getElementById("fullName").value = data.fullName || "";
+      document.getElementById("year").value = data.year || "";
+      document.getElementById("semester").value = data.semester || "";
+      document.getElementById("discipline").value = data.discipline || "";
+      document.getElementById("group").value = data.group || "";
+      document.getElementById("bio").value = data.bio || "";
+
+      if (data.avatar) {
+        markSelectedAvatar(data.avatar);
+      }
+    }
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      currentUser = user;
+      try {
+        await loadExistingProfile(user.uid);
+      } catch (error) {
+        console.error(error);
+      }
+    });
+
+    document.getElementById("saveProfileBtn").addEventListener("click", async () => {
+      const fullName = document.getElementById("fullName").value.trim();
+      const year = document.getElementById("year").value;
+      const semester = document.getElementById("semester").value;
+      const discipline = document.getElementById("discipline").value.trim();
+      const group = document.getElementById("group").value.trim();
+      const bio = document.getElementById("bio").value.trim();
+
+      if (!currentUser) {
+        alert("User not logged in.");
+        return;
+      }
+
+      if (!selectedAvatar || !fullName || !year || !semester || !discipline || !group) {
+        alert("Please fill all mandatory fields and choose an avatar.");
+        return;
+      }
+
+      try {
+        statusText.textContent = "Saving profile...";
+        await setDoc(doc(db, "profiles", currentUser.uid), {
+          fullName,
+          avatar: selectedAvatar,
+          year,
+          semester,
+          discipline,
+          group,
+          bio,
+          email: currentUser.email,
+          updatedAt: new Date()
+        });
+
+        statusText.textContent = "";
+        alert("Profile saved successfully ✅");
+        window.location.href = "index.html";
+      } catch (error) {
+        statusText.textContent = "";
+        alert("Error: " + error.message);
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>
