@@ -1,176 +1,721 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CampusConnect — Discover</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discover - CampusConnect</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #eef1f8;
+      color: #111827;
+    }
+
+    .site-header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav__brand {
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+
+    .nav__links a {
+      text-decoration: none;
+      color: #667085;
+      font-size: 15px;
+    }
+
+    .nav__links a[aria-current="page"] {
+      color: #4f46e5;
+      font-weight: 600;
+    }
+
+    .profile-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f8faff;
+      border: 1px solid #e5e7eb;
+      border-radius: 999px;
+      padding: 6px 10px;
+    }
+
+    .profile-chip img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .profile-chip span {
+      font-size: 14px;
+      color: #111827;
+      font-weight: 600;
+      max-width: 120px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .logout-btn,
+    .edit-btn {
+      background: none;
+      border: none;
+      color: #4f46e5;
+      cursor: pointer;
+      font: inherit;
+      padding: 0;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: white;
+      border-radius: 28px;
+      padding: 28px;
+      margin-bottom: 26px;
+      box-shadow: 0 16px 40px rgba(79, 70, 229, 0.18);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 44px;
+      line-height: 1.05;
+      font-weight: 800;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 760px;
+      font-size: 18px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .search-wrap {
+      background: white;
+      border: 1px solid #dbe4ff;
+      border-radius: 18px;
+      padding: 14px 16px;
+      margin: 22px 0 28px;
+      box-shadow: 0 10px 28px rgba(17, 24, 39, 0.04);
+    }
+
+    .search-input {
+      width: 100%;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      background: transparent;
+      color: #111827;
+    }
+
+    .section {
+      margin-bottom: 34px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 28px;
+      color: #0f172a;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: #667085;
+      font-size: 14px;
+    }
+
+    .cards-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .soft-card {
+      background: white;
+      border: 1px solid #dbe4ff;
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 12px 30px rgba(17, 24, 39, 0.05);
+    }
+
+    .soft-card h4 {
+      margin: 0 0 8px;
+      color: #0f172a;
+      font-size: 18px;
+    }
+
+    .soft-card p {
+      margin: 0;
+      color: #667085;
+      line-height: 1.5;
+    }
+
+    .meta-line {
+      margin-top: 12px;
+      color: #4f46e5;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #f5f7ff;
+      border: 1px solid #dbe4ff;
+      color: #4f46e5;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .pill-btn {
+      margin-top: 14px;
+      border: none;
+      background: #4f46e5;
+      color: white;
+      border-radius: 999px;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .pill-btn:hover {
+      background: #4338ca;
+    }
+
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 18px;
+    }
+
+    .person-card {
+      background: white;
+      border: 1px solid #dbe4ff;
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: 0 12px 30px rgba(17, 24, 39, 0.05);
+    }
+
+    .person-top {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .person-top img {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #eef2ff;
+      flex-shrink: 0;
+    }
+
+    .person-top h3 {
+      margin: 0 0 6px;
+      font-size: 22px;
+      color: #0f172a;
+    }
+
+    .person-top p {
+      margin: 0;
+      color: #667085;
+      font-size: 14px;
+    }
+
+    .person-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .person-tags span {
+      background: #f5f7ff;
+      border: 1px solid #dbe4ff;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: #374151;
+    }
+
+    .person-bio {
+      color: #667085;
+      line-height: 1.55;
+      min-height: 48px;
+    }
+
+    .person-actions {
+      margin-top: 14px;
+    }
+
+    .person-actions button {
+      border: none;
+      background: #4f46e5;
+      color: white;
+      border-radius: 999px;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .empty-box {
+      background: white;
+      border: 1px dashed #c7d2fe;
+      border-radius: 22px;
+      padding: 28px;
+      text-align: center;
+      color: #667085;
+    }
+
+    .site-footer {
+      text-align: center;
+      color: #667085;
+      padding: 10px 12px 40px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 700px) {
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav__links {
+        gap: 14px;
+      }
+    }
+  </style>
 </head>
-<body class="page-discover">
-  <div class="discover-app">
-    <aside class="discover-sidebar" aria-label="App navigation">
-      <a href="index.html" class="discover-sidebar__logo">CampusConnect</a>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main">
+      <a href="index.html" class="nav__brand">CampusConnect</a>
 
-      <nav class="discover-sidebar__nav" aria-label="Sidebar">
-        <a href="login.html" class="discover-sidebar__link">
-          <span class="discover-sidebar__icon" aria-hidden="true">◉</span>
-          Profile
-        </a>
-        <a href="discover.html" class="discover-sidebar__link is-active" aria-current="page">
-          <span class="discover-sidebar__icon" aria-hidden="true">◎</span>
-          Discover
-        </a>
-        <a href="marketplace.html" class="discover-sidebar__link">
-          <span class="discover-sidebar__icon" aria-hidden="true">◇</span>
-          Marketplace
-        </a>
-        <a href="events.html" class="discover-sidebar__link">
-          <span class="discover-sidebar__icon" aria-hidden="true">▤</span>
-          Events
-        </a>
-        <a href="#settings" class="discover-sidebar__link">
-          <span class="discover-sidebar__icon" aria-hidden="true">⚙</span>
-          Settings
-        </a>
-      </nav>
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="discover.html" aria-current="page">Discover</a></li>
+        <li><a href="marketplace.html">Marketplace</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li id="communityNavItem" style="display:none;">
+          <a id="communityNavLink" href="community.html">Community</a>
+        </li>
 
-      <button type="button" class="btn discover-sidebar__cta">Create Post</button>
-
-      <p class="discover-sidebar__hint"><a href="login.html">Log in</a> for full access</p>
-    </aside>
-
-    <div class="discover-main">
-      <header class="discover-hero">
-        <p class="discover-hero__eyebrow">Spring 2026</p>
-        <h1 class="discover-hero__title">Find your perfect collaborator</h1>
-        <p class="discover-hero__subtitle">Connect with students across campus based on skills, interests, and goals.</p>
-
-        <div class="app-top-bar">
-          <div class="discover-search" role="search">
-            <label class="visually-hidden" for="discover-search-input">Search students</label>
-            <span class="discover-search__icon" aria-hidden="true">⌕</span>
-            <input type="search" id="discover-search-input" class="discover-search__input" placeholder="Search for projects or people…" autocomplete="off">
+        <li>
+          <div class="profile-chip">
+            <img id="navAvatar" src="assets/avatar1.png" alt="Profile">
+            <span id="navName">Student</span>
           </div>
-          <div class="quick-filters" role="group" aria-label="Quick role filters">
-            <button type="button" class="quick-filter is-active">All</button>
-            <button type="button" class="quick-filter">Engineers</button>
-            <button type="button" class="quick-filter">Designers</button>
-            <button type="button" class="quick-filter">Business</button>
-          </div>
-        </div>
+        </li>
 
-        <div class="discover-filters" aria-label="Filters">
-          <button type="button" class="filter-pill">
-            Academic Year
-            <span class="filter-pill__chevron" aria-hidden="true"></span>
-          </button>
-          <button type="button" class="filter-pill">
-            Major / Branch
-            <span class="filter-pill__chevron" aria-hidden="true"></span>
-          </button>
-          <button type="button" class="filter-pill">
-            Interests
-            <span class="filter-pill__chevron" aria-hidden="true"></span>
-          </button>
-          <button type="button" class="filter-pill filter-pill--muted">
-            More Filters
-            <span class="filter-pill__chevron" aria-hidden="true"></span>
-          </button>
-        </div>
-      </header>
+        <li><button class="edit-btn" id="editProfileBtn">Edit Profile</button></li>
+        <li><button class="logout-btn" id="logoutBtn">Logout</button></li>
+      </ul>
+    </nav>
+  </header>
 
-      <section class="discover-section" aria-labelledby="students-heading">
-        <h2 id="students-heading" class="discover-section__title">Recommended collaborators</h2>
-        <div class="student-grid">
-          <article class="student-card">
-            <div class="student-card__header">
-              <img class="student-card__avatar" src="https://i.pravatar.cc/200?img=32" width="200" height="200" alt="Portrait of Maya Chen">
-              <div class="student-card__badge student-card__badge--accent">Top Contributor</div>
-            </div>
-            <h3 class="student-card__name">Maya Chen</h3>
-            <p class="student-card__meta">Junior · Computer Science</p>
-            <ul class="tag-list" aria-label="Skills and interests">
-              <li>Machine Learning</li>
-              <li>Python</li>
-              <li>Hackathons</li>
-              <li>Open Source</li>
-            </ul>
-            <button type="button" class="btn btn--block btn--sm">Connect</button>
-          </article>
+  <main class="page">
+    <section class="hero">
+      <div class="hero-badge">DISCOVER CAMPUS</div>
+      <h1>Find your people, spaces, and opportunities</h1>
+      <p>Explore communities, see what’s happening around campus, and discover students you may want to connect with.</p>
+    </section>
 
-          <article class="student-card">
-            <div class="student-card__header">
-              <img class="student-card__avatar" src="https://i.pravatar.cc/200?img=12" width="200" height="200" alt="Portrait of Jordan Williams">
-              <div class="student-card__badge student-card__badge--violet">AI Enthusiast</div>
-            </div>
-            <h3 class="student-card__name">Jordan Williams</h3>
-            <p class="student-card__meta">Senior · Electrical Engineering</p>
-            <ul class="tag-list" aria-label="Skills and interests">
-              <li>Computer Vision</li>
-              <li>Robotics</li>
-              <li>C++</li>
-            </ul>
-            <button type="button" class="btn btn--block btn--sm">Connect</button>
-          </article>
-
-          <article class="student-card">
-            <div class="student-card__header">
-              <img class="student-card__avatar" src="https://i.pravatar.cc/200?img=45" width="200" height="200" alt="Portrait of Samira Okonkwo">
-              <div class="student-card__badge student-card__badge--teal">Design Lead</div>
-            </div>
-            <h3 class="student-card__name">Samira Okonkwo</h3>
-            <p class="student-card__meta">Sophomore · Design &amp; HCI</p>
-            <ul class="tag-list" aria-label="Skills and interests">
-              <li>UI/UX</li>
-              <li>Figma</li>
-              <li>Design Systems</li>
-              <li>Research</li>
-            </ul>
-            <button type="button" class="btn btn--block btn--sm">Connect</button>
-          </article>
-
-          <article class="student-card">
-            <div class="student-card__header">
-              <img class="student-card__avatar" src="https://i.pravatar.cc/200?img=68" width="200" height="200" alt="Portrait of Alex Rivera">
-              <div class="student-card__badge student-card__badge--amber">Top Contributor</div>
-            </div>
-            <h3 class="student-card__name">Alex Rivera</h3>
-            <p class="student-card__meta">Graduate · Business Analytics</p>
-            <ul class="tag-list" aria-label="Skills and interests">
-              <li>SQL</li>
-              <li>Data Viz</li>
-              <li>Startup</li>
-            </ul>
-            <button type="button" class="btn btn--block btn--sm">Connect</button>
-          </article>
-        </div>
-      </section>
-
-      <div class="discover-bottom">
-        <article class="callout-card">
-          <div class="callout-card__inner">
-            <h2 class="callout-card__title">Start a Collaborative Study Group</h2>
-            <p class="callout-card__text">Break through academic challenges together. Build a private network with fellow students to share notes and research.</p>
-            <button type="button" class="btn callout-card__btn">Create Group</button>
-          </div>
-        </article>
-
-        <aside class="trending-card" aria-labelledby="trending-heading">
-          <h2 id="trending-heading" class="trending-card__title">Trending Skills</h2>
-          <ul class="trending-card__tags">
-            <li><a href="#">React Native</a></li>
-            <li><a href="#">Fintech</a></li>
-            <li><a href="#">Ethics in AI</a></li>
-            <li><a href="#">3D Printing</a></li>
-          </ul>
-        </aside>
-      </div>
+    <div class="search-wrap">
+      <input id="searchInput" class="search-input" type="text" placeholder="Search people by name, branch, group, or bio..." />
     </div>
-  </div>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>For You</h2>
+          <p>Quick picks based on your campus profile and activity.</p>
+        </div>
+      </div>
+
+      <div class="cards-row">
+        <div class="soft-card">
+          <h4>Recommended Communities</h4>
+          <p>Join spaces where students with similar academic background gather.</p>
+          <div class="meta-line">Web Dev • First Year Help • Hackathon Circle</div>
+          <button class="pill-btn" onclick="location.href='community.html?name=Web%20Dev%20Community'">Explore</button>
+        </div>
+
+        <div class="soft-card">
+          <h4>Campus Events</h4>
+          <p>Check workshops, club events, and academic sessions happening this week.</p>
+          <div class="meta-line">2 events this week</div>
+          <button class="pill-btn">View Events</button>
+        </div>
+
+        <div class="soft-card">
+          <h4>Marketplace Picks</h4>
+          <p>See recent listings from students, including books, tech, and study essentials.</p>
+          <div class="meta-line">Trending: books • calculators • gadgets</div>
+          <button class="pill-btn">Browse</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Recommended Communities</h2>
+          <p>Communities you may want to join first.</p>
+        </div>
+      </div>
+
+      <div class="cards-row">
+        <div class="soft-card">
+          <div class="badge-row">
+            <span class="badge">Popular</span>
+            <span class="badge">For First Years</span>
+          </div>
+          <h4>First Year CSE Circle</h4>
+          <p>A place for first-year CSE students to share doubts, tips, and opportunities.</p>
+          <div class="meta-line">150 members</div>
+          <button class="pill-btn" onclick="location.href='community.html?name=First%20Year%20CSE%20Circle'">Join</button>
+        </div>
+
+        <div class="soft-card">
+          <div class="badge-row">
+            <span class="badge">Hackathons</span>
+            <span class="badge">Team Up</span>
+          </div>
+          <h4>Hackathon Squad</h4>
+          <p>Find teammates, event updates, and project discussions for hackathons.</p>
+          <div class="meta-line">80 members</div>
+          <button class="pill-btn" onclick="location.href='community.html?name=Hackathon%20Squad'">Join</button>
+        </div>
+
+        <div class="soft-card">
+          <div class="badge-row">
+            <span class="badge">Build</span>
+            <span class="badge">Projects</span>
+          </div>
+          <h4>Campus Makers</h4>
+          <p>For students interested in building ideas, prototypes, and startup-style projects.</p>
+          <div class="meta-line">64 members</div>
+          <button class="pill-btn" onclick="location.href='community.html?name=Campus%20Makers'">Join</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>People You May Know</h2>
+          <p>Real profiles from Firebase. Your own profile is hidden here.</p>
+        </div>
+      </div>
+
+      <div id="peopleGrid" class="people-grid"></div>
+      <div id="emptyPeople" class="empty-box" style="display:none;">
+        As more students join CampusConnect, suggested profiles will appear here.
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Upcoming Events</h2>
+          <p>Preview section for events. We can make this dynamic later.</p>
+        </div>
+      </div>
+
+      <div class="cards-row">
+        <div class="soft-card">
+          <div class="badge-row">
+            <span class="badge">Workshop</span>
+          </div>
+          <h4>Web Dev Workshop</h4>
+          <p>Hands-on frontend session for students this week.</p>
+          <div class="meta-line">April 25</div>
+          <button class="pill-btn">View</button>
+        </div>
+
+        <div class="soft-card">
+          <div class="badge-row">
+            <span class="badge">Seminar</span>
+          </div>
+          <h4>AI Seminar</h4>
+          <p>A campus session on practical AI ideas and student projects.</p>
+          <div class="meta-line">April 28</div>
+          <button class="pill-btn">View</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Marketplace</h2>
+          <p>Preview section for recently listed student items.</p>
+        </div>
+      </div>
+
+      <div class="cards-row">
+        <div class="soft-card">
+          <div class="badge-row">
+            <span class="badge">Tech</span>
+          </div>
+          <h4>Used Laptop</h4>
+          <p>Student listing for a lightly used laptop in good condition.</p>
+          <div class="meta-line">AED 1200</div>
+          <button class="pill-btn">View</button>
+        </div>
+
+        <div class="soft-card">
+          <div class="badge-row">
+            <span class="badge">Books</span>
+          </div>
+          <h4>Engineering Books</h4>
+          <p>Semester books available from a senior student.</p>
+          <div class="meta-line">AED 150</div>
+          <button class="pill-btn">View</button>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer class="site-footer">
-    <p>CampusConnect — discover</p>
+    CampusConnect — discover
   </footer>
-  <script type="module" src="auth-check.js"></script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getFirestore, collection, doc, getDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbMYt1jx1ZT8d6L9dg5Sz1ArvPC8_LVao",
+      authDomain: "campusconnect-4f809.firebaseapp.com",
+      projectId: "campusconnect-4f809",
+      storageBucket: "campusconnect-4f809.appspot.com",
+      messagingSenderId: "1070564995984",
+      appId: "1:1070564995984:web:b330ec15b5d76c09b97915"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const navAvatar = document.getElementById("navAvatar");
+    const navName = document.getElementById("navName");
+    const peopleGrid = document.getElementById("peopleGrid");
+    const emptyPeople = document.getElementById("emptyPeople");
+    const searchInput = document.getElementById("searchInput");
+    const communityNavItem = document.getElementById("communityNavItem");
+    const communityNavLink = document.getElementById("communityNavLink");
+
+    let currentUserId = null;
+    let allProfiles = [];
+
+    function renderPeople(profiles) {
+      peopleGrid.innerHTML = "";
+
+      if (!profiles.length) {
+        emptyPeople.style.display = "block";
+        return;
+      }
+
+      emptyPeople.style.display = "none";
+
+      profiles.forEach((profile) => {
+        const card = document.createElement("div");
+        card.className = "person-card";
+
+        const bioText = profile.bio && profile.bio.trim() ? profile.bio : "No bio added yet.";
+
+        card.innerHTML = `
+          <div class="person-top">
+            <img src="${profile.avatar || "assets/avatar1.png"}" alt="${profile.fullName || "Student"}">
+            <div>
+              <h3>${profile.fullName || "Student"}</h3>
+              <p>${profile.discipline || "Discipline"} • ${profile.year || "Year"}</p>
+            </div>
+          </div>
+
+          <div class="person-tags">
+            <span>${profile.semester || "Semester"}</span>
+            <span>${profile.group || "Group"}</span>
+            <span>${profile.discipline || "Branch"}</span>
+          </div>
+
+          <div class="person-bio">${bioText}</div>
+
+          <div class="person-actions">
+            <button type="button">Connect</button>
+          </div>
+        `;
+
+        peopleGrid.appendChild(card);
+      });
+    }
+
+    function applySearch() {
+      const query = searchInput.value.trim().toLowerCase();
+
+      if (!query) {
+        renderPeople(allProfiles);
+        return;
+      }
+
+      const filtered = allProfiles.filter((profile) => {
+        return (
+          (profile.fullName || "").toLowerCase().includes(query) ||
+          (profile.discipline || "").toLowerCase().includes(query) ||
+          (profile.group || "").toLowerCase().includes(query) ||
+          (profile.bio || "").toLowerCase().includes(query) ||
+          (profile.year || "").toLowerCase().includes(query) ||
+          (profile.semester || "").toLowerCase().includes(query)
+        );
+      });
+
+      renderPeople(filtered);
+    }
+
+    async function loadCurrentUserProfile(uid) {
+      const profileRef = doc(db, "profiles", uid);
+      const profileSnap = await getDoc(profileRef);
+
+      if (!profileSnap.exists()) {
+        window.location.href = "profile.html";
+        return false;
+      }
+
+      const data = profileSnap.data();
+      navAvatar.src = data.avatar || "assets/avatar1.png";
+      navName.textContent = data.fullName || "Student";
+
+      if (data.joinedCommunity) {
+        communityNavItem.style.display = "list-item";
+        communityNavLink.href = `community.html?name=${encodeURIComponent(data.joinedCommunity)}`;
+      }
+
+      return true;
+    }
+
+    async function loadAllProfiles() {
+      const snap = await getDocs(collection(db, "profiles"));
+      const profiles = [];
+
+      snap.forEach((docSnap) => {
+        if (docSnap.id !== currentUserId) {
+          profiles.push({
+            id: docSnap.id,
+            ...docSnap.data()
+          });
+        }
+      });
+
+      allProfiles = profiles;
+      renderPeople(allProfiles);
+    }
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      currentUserId = user.uid;
+
+      try {
+        const hasProfile = await loadCurrentUserProfile(user.uid);
+        if (!hasProfile) return;
+        await loadAllProfiles();
+      } catch (error) {
+        console.error(error);
+        alert("Could not load discover page.");
+      }
+    });
+
+    searchInput.addEventListener("input", applySearch);
+
+    document.getElementById("editProfileBtn").addEventListener("click", () => {
+      window.location.href = "profile.html";
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        alert("Logged out ✅");
+        window.location.href = "login.html";
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+  </script>
 </body>
 </html>

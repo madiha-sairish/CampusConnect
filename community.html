@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community - CampusConnect</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #eef1f8;
+      color: #111827;
+    }
+
+    .site-header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav__brand {
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+
+    .nav__links a {
+      text-decoration: none;
+      color: #667085;
+      font-size: 15px;
+    }
+
+    .nav__links a[aria-current="page"] {
+      color: #4f46e5;
+      font-weight: 600;
+    }
+
+    .profile-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f8faff;
+      border: 1px solid #e5e7eb;
+      border-radius: 999px;
+      padding: 6px 10px;
+    }
+
+    .profile-chip img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .profile-chip span {
+      font-size: 14px;
+      color: #111827;
+      font-weight: 600;
+    }
+
+    .logout-btn,
+    .edit-btn {
+      background: none;
+      border: none;
+      color: #4f46e5;
+      cursor: pointer;
+      font: inherit;
+      padding: 0;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 20px 50px;
+      display: grid;
+      grid-template-columns: 1.8fr 1fr;
+      gap: 22px;
+    }
+
+    .left-col,
+    .right-col {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .community-hero {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: white;
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 16px 40px rgba(79, 70, 229, 0.18);
+    }
+
+    .community-hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.24);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .community-hero h1 {
+      margin: 0 0 10px;
+      font-size: 40px;
+      line-height: 1.05;
+    }
+
+    .community-hero p {
+      margin: 0 0 16px;
+      line-height: 1.6;
+      font-size: 17px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .hero-actions button {
+      border: none;
+      border-radius: 999px;
+      padding: 11px 18px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .join-btn {
+      background: white;
+      color: #4f46e5;
+    }
+
+    .notify-btn {
+      background: rgba(255,255,255,0.16);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.24);
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #dbe4ff;
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 12px 30px rgba(17, 24, 39, 0.05);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .tab {
+      background: #f5f7ff;
+      border: 1px solid #dbe4ff;
+      color: #4f46e5;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .post-box textarea {
+      width: 100%;
+      min-height: 90px;
+      resize: vertical;
+      border: 1px solid #dbe4ff;
+      border-radius: 16px;
+      padding: 14px;
+      box-sizing: border-box;
+      font-family: inherit;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .primary-btn {
+      border: none;
+      background: #4f46e5;
+      color: white;
+      border-radius: 999px;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .post-card {
+      border-top: 1px solid #eef2ff;
+      padding-top: 18px;
+      margin-top: 18px;
+    }
+
+    .post-top {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .post-top img {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .post-top h4 {
+      margin: 0 0 4px;
+      font-size: 17px;
+    }
+
+    .post-top p {
+      margin: 0;
+      color: #667085;
+      font-size: 13px;
+    }
+
+    .post-content {
+      color: #374151;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .post-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .post-actions button {
+      border: 1px solid #dbe4ff;
+      background: #f8faff;
+      color: #4f46e5;
+      border-radius: 999px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .sidebar-title {
+      margin: 0 0 14px;
+      font-size: 20px;
+    }
+
+    .community-info-line {
+      color: #667085;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .member-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .member-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .member-item img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .member-item strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .member-item span {
+      color: #667085;
+      font-size: 13px;
+    }
+
+    .notice-box {
+      color: #667085;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        grid-template-columns: 1fr;
+      }
+
+      .community-hero h1 {
+        font-size: 32px;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a href="index.html" class="nav__brand">CampusConnect</a>
+
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="discover.html">Discover</a></li>
+        <li><a href="marketplace.html">Marketplace</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="community.html" aria-current="page">Community</a></li>
+
+        <li>
+          <div class="profile-chip">
+            <img id="navAvatar" src="assets/avatar1.png" alt="Profile">
+            <span id="navName">Student</span>
+          </div>
+        </li>
+
+        <li><button class="edit-btn" id="editProfileBtn">Edit Profile</button></li>
+        <li><button class="logout-btn" id="logoutBtn">Logout</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="left-col">
+      <div class="community-hero">
+        <div class="badge">COMMUNITY SPACE</div>
+        <h1 id="communityName">Community</h1>
+        <p id="communityDesc">A collaborative space for students to share ideas, posts, and updates.</p>
+
+        <div class="hero-actions">
+          <button class="join-btn" id="joinBtn">Join Community</button>
+          <button class="notify-btn">Notifications</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="tabs">
+          <span class="tab">Posts</span>
+          <span class="tab">Chat</span>
+          <span class="tab">Members</span>
+          <span class="tab">About</span>
+        </div>
+
+        <div class="post-box">
+          <textarea placeholder="Share something with this community..."></textarea>
+          <button class="primary-btn">Post</button>
+        </div>
+
+        <div class="post-card">
+          <div class="post-top">
+            <img src="assets/avatar2.png" alt="Member">
+            <div>
+              <h4>Ayesha</h4>
+              <p>2 hours ago</p>
+            </div>
+          </div>
+          <div class="post-content">
+            Anyone interested in teaming up for a web development project this week?
+          </div>
+          <div class="post-actions">
+            <button>Like</button>
+            <button>Comment</button>
+            <button>Share</button>
+          </div>
+        </div>
+
+        <div class="post-card">
+          <div class="post-top">
+            <img src="assets/avatar6.png" alt="Member">
+            <div>
+              <h4>Sam</h4>
+              <p>Yesterday</p>
+            </div>
+          </div>
+          <div class="post-content">
+            Dropping some useful resources for beginners here. Let’s keep sharing helpful material.
+          </div>
+          <div class="post-actions">
+            <button>Like</button>
+            <button>Comment</button>
+            <button>Share</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="right-col">
+      <div class="card">
+        <h3 class="sidebar-title">Community Info</h3>
+        <div class="community-info-line"><strong>Name:</strong> <span id="sidebarCommunityName">Community</span></div>
+        <div class="community-info-line"><strong>Status:</strong> <span id="communityStatus">Explore</span></div>
+        <div class="community-info-line"><strong>Focus:</strong> Collaboration, updates, discussions, and opportunities.</div>
+      </div>
+
+      <div class="card">
+        <h3 class="sidebar-title">Members Preview</h3>
+        <div class="member-list">
+          <div class="member-item">
+            <img src="assets/avatar1.png" alt="Member">
+            <div>
+              <strong>Rahul</strong>
+              <span>CSE • 1st Year</span>
+            </div>
+          </div>
+
+          <div class="member-item">
+            <img id="selfAvatarPreview" src="assets/avatar3.png" alt="Member">
+            <div>
+              <strong id="selfNamePreview">You</strong>
+              <span id="selfMetaPreview">Student</span>
+            </div>
+          </div>
+
+          <div class="member-item">
+            <img src="assets/avatar4.png" alt="Member">
+            <div>
+              <strong>Samira</strong>
+              <span>Design • 2nd Year</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="sidebar-title">Community Updates</h3>
+        <div class="notice-box">
+          New posts, discussions, and activity updates can appear here. Later we can connect this part to Firebase too.
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbMYt1jx1ZT8d6L9dg5Sz1ArvPC8_LVao",
+      authDomain: "campusconnect-4f809.firebaseapp.com",
+      projectId: "campusconnect-4f809",
+      storageBucket: "campusconnect-4f809.appspot.com",
+      messagingSenderId: "1070564995984",
+      appId: "1:1070564995984:web:b330ec15b5d76c09b97915"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const navAvatar = document.getElementById("navAvatar");
+    const navName = document.getElementById("navName");
+    const selfAvatarPreview = document.getElementById("selfAvatarPreview");
+    const selfNamePreview = document.getElementById("selfNamePreview");
+    const selfMetaPreview = document.getElementById("selfMetaPreview");
+    const communityName = document.getElementById("communityName");
+    const sidebarCommunityName = document.getElementById("sidebarCommunityName");
+    const communityDesc = document.getElementById("communityDesc");
+    const joinBtn = document.getElementById("joinBtn");
+    const communityStatus = document.getElementById("communityStatus");
+
+    const params = new URLSearchParams(window.location.search);
+    const community = params.get("name") || "Community";
+
+    communityName.textContent = community;
+    sidebarCommunityName.textContent = community;
+    communityDesc.textContent = `Welcome to ${community}. This space is for students to connect, share posts, discuss ideas, and stay updated.`;
+
+    let currentUser = null;
+    let currentProfile = null;
+
+    async function refreshJoinUI() {
+      if (!currentProfile) return;
+
+      if (currentProfile.joinedCommunity === community) {
+        joinBtn.textContent = "Joined";
+        joinBtn.disabled = true;
+        joinBtn.style.opacity = "0.8";
+        communityStatus.textContent = "Joined";
+      } else {
+        joinBtn.textContent = "Join Community";
+        joinBtn.disabled = false;
+        joinBtn.style.opacity = "1";
+        communityStatus.textContent = "Explore";
+      }
+    }
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      currentUser = user;
+
+      try {
+        const profileRef = doc(db, "profiles", user.uid);
+        const profileSnap = await getDoc(profileRef);
+
+        if (!profileSnap.exists()) {
+          window.location.href = "profile.html";
+          return;
+        }
+
+        currentProfile = profileSnap.data();
+
+        navAvatar.src = currentProfile.avatar || "assets/avatar1.png";
+        navName.textContent = currentProfile.fullName || "Student";
+
+        selfAvatarPreview.src = currentProfile.avatar || "assets/avatar1.png";
+        selfNamePreview.textContent = currentProfile.fullName || "You";
+        selfMetaPreview.textContent = `${currentProfile.discipline || "Student"} • ${currentProfile.semester || ""}`.trim();
+
+        await refreshJoinUI();
+      } catch (error) {
+        console.error(error);
+      }
+    });
+
+    joinBtn.addEventListener("click", async () => {
+      if (!currentUser) return;
+
+      try {
+        const profileRef = doc(db, "profiles", currentUser.uid);
+
+        await updateDoc(profileRef, {
+          joinedCommunity: community
+        });
+
+        currentProfile.joinedCommunity = community;
+        await refreshJoinUI();
+        alert("Community joined ✅");
+      } catch (error) {
+        alert("Error: " + error.message);
+      }
+    });
+
+    document.getElementById("editProfileBtn").addEventListener("click", () => {
+      window.location.href = "profile.html";
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        alert("Logged out ✅");
+        window.location.href = "login.html";
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+  </script>
+</body>
+</html>
